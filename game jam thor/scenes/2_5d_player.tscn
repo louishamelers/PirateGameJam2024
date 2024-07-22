@@ -1,0 +1,92 @@
+[gd_scene load_steps=9 format=3 uid="uid://gjecr7gq8ryk"]
+
+[ext_resource type="Script" path="res://scripts/2_d player.gd" id="1_gex4v"]
+[ext_resource type="Texture2D" uid="uid://bcljq1s6u6pme" path="res://assets/png/down.png" id="2_qawd1"]
+[ext_resource type="Texture2D" uid="uid://cvhty5nw28rqh" path="res://assets/png/idle.png" id="3_5t1b6"]
+[ext_resource type="Texture2D" uid="uid://ccjg7l7de38ve" path="res://assets/png/left.png" id="4_typfn"]
+[ext_resource type="Texture2D" uid="uid://dnnigm12w0vg6" path="res://assets/png/right.png" id="5_irqa1"]
+[ext_resource type="Texture2D" uid="uid://cck5hcbqm3e3f" path="res://assets/png/up.png" id="6_y14io"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_f5q2t"]
+radius = 0.536961
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e0ubn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_qawd1")
+}],
+"loop": true,
+"name": &"down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_5t1b6")
+}],
+"loop": true,
+"name": &"down_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_typfn")
+}],
+"loop": true,
+"name": &"left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_5t1b6")
+}],
+"loop": true,
+"name": &"left_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_irqa1")
+}],
+"loop": true,
+"name": &"right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_5t1b6")
+}],
+"loop": true,
+"name": &"right_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_y14io")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_5t1b6")
+}],
+"loop": true,
+"name": &"up_idle",
+"speed": 5.0
+}]
+
+[node name="2_5d player" type="CharacterBody3D"]
+script = ExtResource("1_gex4v")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_f5q2t")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+sprite_frames = SubResource("SpriteFrames_e0ubn")
+animation = &"down_idle"
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.923652, 0.383232, 0, -0.383232, 0.923652, 0, 4.29268, 9.19866)
