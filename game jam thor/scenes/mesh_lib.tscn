@@ -157,12 +157,12 @@ skeleton = NodePath("../GrassFlower1")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PropPillar/StaticBody3D"]
 shape = SubResource("BoxShape3D_ao6xm")
 
-[node name="PropPillar2" type="MeshInstance3D" parent="."]
+[node name="PropStonePlateau" type="MeshInstance3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 mesh = SubResource("BoxMesh_vudnd")
 skeleton = NodePath("../GrassFlower1")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="PropPillar2"]
+[node name="StaticBody3D" type="StaticBody3D" parent="PropStonePlateau"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PropPillar2/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PropStonePlateau/StaticBody3D"]
 shape = SubResource("BoxShape3D_ao6xm")
