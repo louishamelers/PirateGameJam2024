@@ -1,32 +1,34 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1721998575
-icon.svg::CompressedTexture2D::7093729055186669948::1721739982::1721998575::1::::<><>::
-::res://assets/::1721999075
-::res://assets/meshlibs/::1721998944
-builing_blocks.tres::MeshLibrary::-1::1721998242::0::1::::<><>::
-::res://assets/png/::1721998577
-down.png::CompressedTexture2D::2550082946751244144::1721739982::1721998575::1::::<><>::
-idle.png::CompressedTexture2D::6262455806799520291::1721739982::1721998575::1::::<><>::
-left.png::CompressedTexture2D::4932220529143744210::1721739982::1721998575::1::::<><>::
-moving.png::CompressedTexture2D::1045137082204508162::1721739982::1721998575::1::::<><>::
-right.png::CompressedTexture2D::8099051051584341831::1721739982::1721998575::1::::<><>::
-up.png::CompressedTexture2D::4935696949878806445::1721739982::1721998575::1::::<><>::
-::res://assets/tilemaps/::1721999125
-grass-1.png::CompressedTexture2D::8821902478394380415::1721996708::1721999289::1::::<><>::
-grass-2.png::CompressedTexture2D::2553595032015585419::1721996702::1721999289::1::::<><>::
-grass-flower-1.png::CompressedTexture2D::4068356462915700721::1721995798::1721999289::1::::<><>::
-grass-flower-2.png::CompressedTexture2D::7093811938342129452::1721995790::1721999289::1::::<><>::
-grass-stonepath-1.png::CompressedTexture2D::4789429641879937905::1721995649::1721999289::1::::<><>::
-grass-stonepath-2.png::CompressedTexture2D::1127258379797787022::1721995728::1721999289::1::::<><>::
-grass-stonepath-3.png::CompressedTexture2D::2380439454405772893::1721995820::1721999289::1::::<><>::
-TX Props.png::CompressedTexture2D::5254030726224301626::1611430926::1721999124::1::::<><>::
-TX Tileset Grass.png::CompressedTexture2D::8119686832824720538::1608904422::1721999124::1::::<><>::
-::res://scenes/::1721999220
-2_5d_player.tscn::PackedScene::439959843799613126::1721739982::0::1::::<><>::res://scripts/2_d player.gd<>uid://bcljq1s6u6pme::::res://assets/png/down.png<>uid://cvhty5nw28rqh::::res://assets/png/idle.png<>uid://ccjg7l7de38ve::::res://assets/png/left.png<>uid://dnnigm12w0vg6::::res://assets/png/right.png<>uid://cck5hcbqm3e3f::::res://assets/png/up.png
-mesh_lib.tscn::PackedScene::5813584962721168838::1721999273::0::1::::<><>::uid://bx70ibpmffswf::::res://assets/tilemaps/grass-flower-1.png<>uid://c8ckbtocha02c::::res://assets/tilemaps/grass-flower-2.png<>uid://dxxnpeliypwot::::res://assets/tilemaps/grass-1.png<>uid://bcm8lpxcx24cl::::res://assets/tilemaps/grass-2.png<>uid://caibhawumsgw4::::res://assets/tilemaps/grass-stonepath-1.png<>uid://qcb1svm5i1re::::res://assets/tilemaps/grass-stonepath-2.png<>uid://86dqwqbnrupx::::res://assets/tilemaps/grass-stonepath-3.png
-test.tscn::PackedScene::4810535050876032364::1721998570::0::1::::<><>::uid://gjecr7gq8ryk::::res://scenes/2_5d_player.tscn
-::res://scripts/::1721739988
-2_d player.gd::GDScript::-1::1721739982::0::1::::<>CharacterBody3D<>::
-character_body_2d.gd::GDScript::-1::1721739982::0::1::::<>CharacterBody2D<>::
-player movement.gd::GDScript::-1::1721739982::0::1::::<>Node<>::
-shadow_1.gd::GDScript::-1::1721739982::0::1::::<>CharacterBody2D<>::
+::res://::1722000159
+icon.svg::CompressedTexture2D::7093729055186669948::1722000094::1722000094::1::::<><>::
+::res://assets/::1722000094
+::res://assets/meshlibs/::1722000905
+building_blocks.tres::MeshLibrary::5063398014236944991::1722000905::0::1::::<><>::uid://bx70ibpmffswf::::res://assets/tilemaps/grass-flower-1.png<>uid://c8ckbtocha02c::::res://assets/tilemaps/grass-flower-2.png<>uid://dxxnpeliypwot::::res://assets/tilemaps/grass-1.png<>uid://bcm8lpxcx24cl::::res://assets/tilemaps/grass-2.png<>uid://caibhawumsgw4::::res://assets/tilemaps/grass-stonepath-1.png<>uid://qcb1svm5i1re::::res://assets/tilemaps/grass-stonepath-2.png<>uid://86dqwqbnrupx::::res://assets/tilemaps/grass-stonepath-3.png<>uid://msfgu02bpimr::::res://assets/tilemaps/prop-pillar.png
+::res://assets/png/::1722000094
+down.png::CompressedTexture2D::2550082946751244144::1722000094::1722000094::1::::<><>::
+idle.png::CompressedTexture2D::6262455806799520291::1722000094::1722000094::1::::<><>::
+left.png::CompressedTexture2D::4932220529143744210::1722000094::1722000094::1::::<><>::
+moving.png::CompressedTexture2D::1045137082204508162::1722000094::1722000094::1::::<><>::
+right.png::CompressedTexture2D::8099051051584341831::1722000094::1722000094::1::::<><>::
+up.png::CompressedTexture2D::4935696949878806445::1722000094::1722000094::1::::<><>::
+::res://assets/tilemaps/::1722001912
+grass-1.png::CompressedTexture2D::8821902478394380415::1722000094::1722000094::1::::<><>::
+grass-2.png::CompressedTexture2D::2553595032015585419::1722000094::1722000094::1::::<><>::
+grass-flower-1.png::CompressedTexture2D::4068356462915700721::1722000094::1722000094::1::::<><>::
+grass-flower-2.png::CompressedTexture2D::7093811938342129452::1722000094::1722000094::1::::<><>::
+grass-stonepath-1.png::CompressedTexture2D::4789429641879937905::1722000094::1722000094::1::::<><>::
+grass-stonepath-2.png::CompressedTexture2D::1127258379797787022::1722000094::1722000094::1::::<><>::
+grass-stonepath-3.png::CompressedTexture2D::2380439454405772893::1722000094::1722000094::1::::<><>::
+prop-pillar.png::CompressedTexture2D::879740313272531569::1722000817::1722000854::1::::<><>::
+prop-stone-plateau.png::CompressedTexture2D::3067577828554802307::1722001868::1722001939::1::::<><>::
+TX Props.png::CompressedTexture2D::5254030726224301626::1722000094::1722000094::1::::<><>::
+TX Tileset Grass.png::CompressedTexture2D::8119686832824720538::1722001552::1722001913::1::::<><>::
+::res://scenes/::1722001356
+2_5d_player.tscn::PackedScene::439959843799613126::1722001260::0::1::::<><>::res://scripts/2_d player.gd<>uid://bcljq1s6u6pme::::res://assets/png/down.png<>uid://cvhty5nw28rqh::::res://assets/png/idle.png<>uid://ccjg7l7de38ve::::res://assets/png/left.png<>uid://dnnigm12w0vg6::::res://assets/png/right.png<>uid://cck5hcbqm3e3f::::res://assets/png/up.png
+mesh_lib.tscn::PackedScene::5813584962721168838::1722001356::0::1::::<><>::uid://bx70ibpmffswf::::res://assets/tilemaps/grass-flower-1.png<>uid://c8ckbtocha02c::::res://assets/tilemaps/grass-flower-2.png<>uid://dxxnpeliypwot::::res://assets/tilemaps/grass-1.png<>uid://bcm8lpxcx24cl::::res://assets/tilemaps/grass-2.png<>uid://caibhawumsgw4::::res://assets/tilemaps/grass-stonepath-1.png<>uid://qcb1svm5i1re::::res://assets/tilemaps/grass-stonepath-2.png<>uid://86dqwqbnrupx::::res://assets/tilemaps/grass-stonepath-3.png<>uid://msfgu02bpimr::::res://assets/tilemaps/prop-pillar.png
+test.tscn::PackedScene::4810535050876032364::1722001356::0::1::::<><>::uid://gjecr7gq8ryk::::res://scenes/2_5d_player.tscn<>uid://cee0op50nw63l::::res://assets/meshlibs/building_blocks.tres
+::res://scripts/::1722000094
+2_d player.gd::GDScript::-1::1722000094::0::1::::<>CharacterBody3D<>::
+character_body_2d.gd::GDScript::-1::1722000094::0::1::::<>CharacterBody2D<>::
+player movement.gd::GDScript::-1::1722000094::0::1::::<>Node<>::
+shadow_1.gd::GDScript::-1::1722000094::0::1::::<>CharacterBody2D<>::

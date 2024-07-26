@@ -89,4 +89,4 @@ sprite_frames = SubResource("SpriteFrames_e0ubn")
 animation = &"down_idle"
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.923652, 0.383232, 0, -0.383232, 0.923652, 0, 4.29268, 9.19866)
+transform = Transform3D(1, 0, 0, 0, 0.661979, 0.749522, 0, -0.749522, 0.661979, 0, 4.64772, 6.94751)
