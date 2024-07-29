@@ -1,6 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://gjecr7gq8ryk"]
+[gd_scene load_steps=19 format=3 uid="uid://gjecr7gq8ryk"]
 
-[ext_resource type="Script" path="res://scripts/2_d player.gd" id="1_gex4v"]
+[ext_resource type="Script" path="res://assets/scripts/2_d player.gd" id="1_gex4v"]
+[ext_resource type="PackedScene" uid="uid://dkvkxrvpi0x3d" path="res://assets/enemy/hurtbox.tscn" id="2_5glb3"]
+[ext_resource type="Texture2D" path="res://assets/png/dash.png" id="2_igs6w"]
 [ext_resource type="Texture2D" uid="uid://bcljq1s6u6pme" path="res://assets/png/down.png" id="2_qawd1"]
 [ext_resource type="Texture2D" uid="uid://cvhty5nw28rqh" path="res://assets/png/idle.png" id="3_5t1b6"]
 [ext_resource type="Texture2D" uid="uid://ccjg7l7de38ve" path="res://assets/png/left.png" id="4_typfn"]
@@ -12,6 +14,29 @@ radius = 0.536961
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_e0ubn"]
 animations = [{
+"frames": [],
+"loop": true,
+"name": &"dash_down",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"dash_left",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"dash_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_igs6w")
+}],
+"loop": true,
+"name": &"dash_up",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_qawd1")
@@ -77,8 +102,113 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_3qrdy"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h46hj"]
+size = Vector3(2.27155, 1, 1.3374)
+
+[sub_resource type="Animation" id="Animation_7elvg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("area_of_attack/sword:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("area_of_attack/hammer:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:collision_mask")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_f0jpb"]
+resource_name = "a_hammer"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("area_of_attack/hammer:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_ci2yo"]
+resource_name = "a_sword"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("area_of_attack/sword:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_m7l8d"]
+resource_name = "dash"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:collision_mask")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [3, 1, 3]
+}
+
+[sub_resource type="Animation" id="Animation_ga06a"]
+resource_name = "death"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_shx3d"]
+_data = {
+"RESET": SubResource("Animation_7elvg"),
+"a_hammer": SubResource("Animation_f0jpb"),
+"a_sword": SubResource("Animation_ci2yo"),
+"dash": SubResource("Animation_m7l8d"),
+"death": SubResource("Animation_ga06a")
+}
+
 [node name="2_5d player" type="CharacterBody3D"]
 script = ExtResource("1_gex4v")
+
+[node name="hurtbox" parent="." instance=ExtResource("2_5glb3")]
+collision_layer = 0
+collision_mask = 10
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_f5q2t")
@@ -86,7 +216,29 @@ shape = SubResource("CapsuleShape3D_f5q2t")
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
 sprite_frames = SubResource("SpriteFrames_e0ubn")
-animation = &"down_idle"
+animation = &"dash_down"
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.661979, 0.749522, 0, -0.749522, 0.661979, 0, 4.64772, 6.94751)
+transform = Transform3D(1, 0, 0, 0, 0.923652, 0.383232, 0, -0.383232, 0.923652, 0, 6.30456, 15.8703)
+
+[node name="area_of_attack" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="sword" type="CollisionShape3D" parent="area_of_attack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.869599)
+shape = SubResource("BoxShape3D_3qrdy")
+disabled = true
+
+[node name="hammer" type="CollisionShape3D" parent="area_of_attack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0918884, 0, -1.04338)
+shape = SubResource("BoxShape3D_h46hj")
+disabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_shx3d")
+}
+
+[connection signal="sprite_frames_changed" from="AnimatedSprite3D" to="." method="_on_animated_sprite_3d_sprite_frames_changed"]
+[connection signal="area_entered" from="area_of_attack" to="." method="_on_sword_hit_area_entered"]

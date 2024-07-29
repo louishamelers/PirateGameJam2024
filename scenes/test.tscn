@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://casi2r0aqs8p1"]
 
-[ext_resource type="PackedScene" uid="uid://gjecr7gq8ryk" path="res://2_5d_player.tscn" id="1_a1kho"]
+[ext_resource type="PackedScene" uid="uid://gjecr7gq8ryk" path="res://scenes/2_5d_player.tscn" id="1_a1kho"]
 [ext_resource type="MeshLibrary" uid="uid://cee0op50nw63l" path="res://assets/meshlibs/building_blocks.tres" id="1_db47d"]
 [ext_resource type="PackedScene" uid="uid://4l7bd124n1x1" path="res://assets/meshes/TreeStack.fbx" id="4_yxo4o"]
 [ext_resource type="PackedScene" uid="uid://cepe22f42m1ir" path="res://assets/meshes/TreePink.fbx" id="6_fjeth"]
