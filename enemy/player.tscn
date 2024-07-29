@@ -1,0 +1,866 @@
+[gd_scene load_steps=34 format=3 uid="uid://gjecr7gq8ryk"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_qfkp3"]
+[ext_resource type="PackedScene" uid="uid://dkvkxrvpi0x3d" path="res://scenes/hurtbox.tscn" id="2_5glb3"]
+[ext_resource type="Texture2D" uid="uid://b8lwrt5p0nke6" path="res://assets/png/dash.png" id="2_igs6w"]
+[ext_resource type="Texture2D" uid="uid://bcljq1s6u6pme" path="res://assets/png/down.png" id="2_qawd1"]
+[ext_resource type="Texture2D" uid="uid://cvhty5nw28rqh" path="res://assets/png/idle.png" id="3_5t1b6"]
+[ext_resource type="Texture2D" uid="uid://ccjg7l7de38ve" path="res://assets/png/left.png" id="4_typfn"]
+[ext_resource type="Texture2D" uid="uid://dnnigm12w0vg6" path="res://assets/png/right.png" id="5_irqa1"]
+[ext_resource type="Texture2D" uid="uid://cck5hcbqm3e3f" path="res://assets/png/up.png" id="6_y14io"]
+[ext_resource type="Script" path="res://scenes/area_of_attack.gd" id="9_o1wam"]
+[ext_resource type="Script" path="res://scenes/copper_sword.gd" id="10_j4qqc"]
+[ext_resource type="Script" path="res://scenes/silver_sword.gd" id="11_j2qb5"]
+[ext_resource type="Script" path="res://scenes/silver_stinger.gd" id="12_kr1yp"]
+[ext_resource type="Script" path="res://scenes/lead_hammer.gd" id="13_kxbq3"]
+[ext_resource type="Script" path="res://scenes/gold_hammer.gd" id="14_sq32m"]
+[ext_resource type="Script" path="res://scenes/THE_HOLY_HAMMER.gd" id="15_5cwx7"]
+[ext_resource type="Script" path="res://scenes/Area3D3.gd" id="16_4nktg"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qbw8s"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_f5q2t"]
+radius = 0.536961
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e0ubn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_igs6w")
+}],
+"loop": true,
+"name": &"dash_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_igs6w")
+}],
+"loop": true,
+"name": &"dash_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_igs6w")
+}],
+"loop": true,
+"name": &"dash_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_igs6w")
+}],
+"loop": true,
+"name": &"dash_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_qawd1")
+}],
+"loop": true,
+"name": &"down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_5t1b6")
+}],
+"loop": true,
+"name": &"down_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_qawd1")
+}],
+"loop": true,
+"name": &"h_a_down",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"h_a_left",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"h_a_right",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"h_a_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_typfn")
+}],
+"loop": true,
+"name": &"left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_5t1b6")
+}],
+"loop": true,
+"name": &"left_idle",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"p_a_down",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"p_a_left",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"p_a_right",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"p_a_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_irqa1")
+}],
+"loop": true,
+"name": &"right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_5t1b6")
+}],
+"loop": true,
+"name": &"right_idle",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"s_a_down",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"s_a_left",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"s_a_right",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"s_a_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_y14io")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_5t1b6")
+}],
+"loop": true,
+"name": &"up_idle",
+"speed": 5.0
+}]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3qrdy"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h46hj"]
+size = Vector3(3.14162, 1, 1.78784)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qdbia"]
+size = Vector3(1.08936, 1, 1.17871)
+
+[sub_resource type="Animation" id="Animation_7elvg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("area_of_attacks/lead_hammer/hammer:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("area_of_attacks/Area3D3/phil:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("hurtbox/CollisionShape3D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("area_of_attacks/copper_sword/sword:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("area_of_attacks/silver_sword:monitorable")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("area_of_attacks/silver_stinger:monitorable")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("area_of_attacks/silver_sword/sword2:disabled")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("area_of_attacks/copper_sword:monitorable")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("area_of_attacks/silver_stinger/sword3:disabled")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("area_of_attacks/lead_hammer:monitorable")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("area_of_attacks/gold_hammer:monitorable")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("area_of_attacks/THE_HOLY_HAMMER:monitorable")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("area_of_attacks/gold_hammer/hammer2:disabled")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("area_of_attacks/THE_HOLY_HAMMER/hammer3:disabled")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("area_of_attacks/Area3D3:monitorable")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_epvcr"]
+resource_name = "THE_HOLY_HAMMER_anim"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("area_of_attacks/THE_HOLY_HAMMER:monitorable")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("area_of_attacks/THE_HOLY_HAMMER/hammer3:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("area_of_attacks/gold_hammer:monitorable")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("area_of_attacks/lead_hammer:monitorable")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_rai8r"]
+resource_name = "copper_sword_anim"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("area_of_attacks/copper_sword/sword:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("area_of_attacks/silver_sword:monitorable")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("area_of_attacks/silver_stinger:monitorable")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("area_of_attacks/copper_sword:monitorable")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_m7l8d"]
+resource_name = "dash"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath("hurtbox/CollisionShape3D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_ga06a"]
+resource_name = "death"
+
+[sub_resource type="Animation" id="Animation_w0p1v"]
+resource_name = "gold_hammer_anim"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("area_of_attacks/gold_hammer:monitorable")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("area_of_attacks/gold_hammer/hammer2:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("area_of_attacks/lead_hammer:monitorable")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("area_of_attacks/THE_HOLY_HAMMER:monitorable")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_aw3y3"]
+resource_name = "lead_hammer_anim"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("area_of_attacks/lead_hammer:monitorable")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("area_of_attacks/lead_hammer/hammer:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("area_of_attacks/gold_hammer:monitorable")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("area_of_attacks/THE_HOLY_HAMMER:monitorable")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_c12tl"]
+resource_name = "phil_attack"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("area_of_attacks/Area3D3/phil:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("area_of_attacks/Area3D3:monitorable")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_3nvl4"]
+resource_name = "silver_stinger_anim"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("area_of_attacks/silver_stinger:monitorable")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("area_of_attacks/silver_stinger/sword3:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("area_of_attacks/silver_sword:monitorable")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("area_of_attacks/copper_sword:monitorable")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_praiu"]
+resource_name = "silver_sword_anim"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("area_of_attacks/silver_sword/sword2:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("area_of_attacks/silver_sword:monitorable")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("area_of_attacks/copper_sword:monitorable")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("area_of_attacks/silver_stinger:monitorable")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_shx3d"]
+_data = {
+"RESET": SubResource("Animation_7elvg"),
+"THE_HOLY_HAMMER_anim": SubResource("Animation_epvcr"),
+"copper_sword_anim": SubResource("Animation_rai8r"),
+"dash": SubResource("Animation_m7l8d"),
+"death": SubResource("Animation_ga06a"),
+"gold_hammer_anim": SubResource("Animation_w0p1v"),
+"lead_hammer_anim": SubResource("Animation_aw3y3"),
+"phil_attack": SubResource("Animation_c12tl"),
+"silver_stinger_anim": SubResource("Animation_3nvl4"),
+"silver_sword_anim": SubResource("Animation_praiu")
+}
+
+[node name="player" type="CharacterBody3D"]
+collision_layer = 41
+collision_mask = 25
+script = ExtResource("1_qfkp3")
+
+[node name="hurtbox" parent="." instance=ExtResource("2_5glb3")]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape3D" parent="hurtbox" index="0"]
+shape = SubResource("CapsuleShape3D_qbw8s")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_f5q2t")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+sprite_frames = SubResource("SpriteFrames_e0ubn")
+animation = &"h_a_down"
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.923652, 0.383232, 0, -0.383232, 0.923652, 0, 6.30456, 15.8703)
+
+[node name="area_of_attacks" type="Node3D" parent="."]
+script = ExtResource("9_o1wam")
+
+[node name="copper_sword" type="Area3D" parent="area_of_attacks"]
+collision_layer = 2
+collision_mask = 2
+monitorable = false
+script = ExtResource("10_j4qqc")
+
+[node name="sword" type="CollisionShape3D" parent="area_of_attacks/copper_sword"]
+transform = Transform3D(2, 0, 0, 0, 1.5, 0, 0, 0, 1.7264, 0, 0, -1.39151)
+shape = SubResource("BoxShape3D_3qrdy")
+disabled = true
+
+[node name="silver_sword" type="Area3D" parent="area_of_attacks"]
+collision_layer = 2
+collision_mask = 2
+monitorable = false
+script = ExtResource("11_j2qb5")
+
+[node name="sword2" type="CollisionShape3D" parent="area_of_attacks/silver_sword"]
+transform = Transform3D(2, 0, 0, 0, 1.5, 0, 0, 0, 1.7264, 0, 0, -1.39151)
+shape = SubResource("BoxShape3D_3qrdy")
+disabled = true
+
+[node name="silver_stinger" type="Area3D" parent="area_of_attacks"]
+collision_layer = 2
+collision_mask = 2
+monitorable = false
+script = ExtResource("12_kr1yp")
+
+[node name="sword3" type="CollisionShape3D" parent="area_of_attacks/silver_stinger"]
+transform = Transform3D(2, 0, 0, 0, 1.5, 0, 0, 0, 1.7264, 0, 0, -1.39151)
+shape = SubResource("BoxShape3D_3qrdy")
+disabled = true
+
+[node name="lead_hammer" type="Area3D" parent="area_of_attacks"]
+script = ExtResource("13_kxbq3")
+
+[node name="hammer" type="CollisionShape3D" parent="area_of_attacks/lead_hammer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.109764, 0, -1.2686)
+shape = SubResource("BoxShape3D_h46hj")
+disabled = true
+
+[node name="gold_hammer" type="Area3D" parent="area_of_attacks"]
+monitorable = false
+script = ExtResource("14_sq32m")
+
+[node name="hammer2" type="CollisionShape3D" parent="area_of_attacks/gold_hammer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.109764, 0, -1.2686)
+shape = SubResource("BoxShape3D_h46hj")
+disabled = true
+
+[node name="THE_HOLY_HAMMER" type="Area3D" parent="area_of_attacks"]
+monitorable = false
+script = ExtResource("15_5cwx7")
+
+[node name="hammer3" type="CollisionShape3D" parent="area_of_attacks/THE_HOLY_HAMMER"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.109764, 0, -1.2686)
+shape = SubResource("BoxShape3D_h46hj")
+disabled = true
+
+[node name="Area3D3" type="Area3D" parent="area_of_attacks"]
+script = ExtResource("16_4nktg")
+
+[node name="phil" type="CollisionShape3D" parent="area_of_attacks/Area3D3"]
+transform = Transform3D(3.44122, 0, 0, 0, 1, 0, 0, 0, 2.78276, -0.153746, 0, -2.08798)
+shape = SubResource("BoxShape3D_qdbia")
+disabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_shx3d")
+}
+
+[node name="on_attack_delay" type="Timer" parent="."]
+process_callback = 0
+wait_time = 1.5
+autostart = true
+
+[node name="take_damage_delay" type="Timer" parent="."]
+wait_time = 1.1
+autostart = true
+
+[node name="dash_delay" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="heal_potion_delay" type="Timer" parent="."]
+wait_time = 30.0
+autostart = true
+
+[connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="area_exited" from="hurtbox" to="." method="_on_hurtbox_area_exited"]
+[connection signal="sprite_frames_changed" from="AnimatedSprite3D" to="." method="_on_animated_sprite_3d_sprite_frames_changed"]
+[connection signal="timeout" from="on_attack_delay" to="." method="_on_on_attack_delay_timeout"]
+[connection signal="timeout" from="take_damage_delay" to="." method="_on_take_damage_delay_timeout"]
+[connection signal="timeout" from="dash_delay" to="." method="_on_dash_delay_timeout"]
+[connection signal="timeout" from="heal_potion_delay" to="." method="_on_heal_potion_delay_timeout"]
+
+[editable path="hurtbox"]

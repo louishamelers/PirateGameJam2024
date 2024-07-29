@@ -1,0 +1,189 @@
+[gd_scene load_steps=21 format=3 uid="uid://bqx1ltytvx8jj"]
+
+[ext_resource type="Script" path="res://scripts/grunt.gd" id="1_ubtk6"]
+[ext_resource type="PackedScene" uid="uid://dkvkxrvpi0x3d" path="res://scenes/hurtbox.tscn" id="2_yu3oy"]
+[ext_resource type="Texture2D" uid="uid://bcljq1s6u6pme" path="res://assets/png/down.png" id="3_ea0lq"]
+[ext_resource type="Texture2D" uid="uid://cvhty5nw28rqh" path="res://assets/png/idle.png" id="3_njh70"]
+[ext_resource type="PackedScene" uid="uid://cp76e4km4j0fb" path="res://scenes/hitbox.tscn" id="3_usay8"]
+[ext_resource type="Texture2D" uid="uid://ccjg7l7de38ve" path="res://assets/png/left.png" id="5_gec4c"]
+[ext_resource type="Texture2D" uid="uid://dnnigm12w0vg6" path="res://assets/png/right.png" id="6_uvqda"]
+[ext_resource type="Texture2D" uid="uid://cck5hcbqm3e3f" path="res://assets/png/up.png" id="7_ajmb7"]
+[ext_resource type="Script" path="res://scenes/hitbox.gd" id="9_qti7m"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ef7uc"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b3awq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_ea0lq")
+}],
+"loop": true,
+"name": &"down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_njh70")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_gec4c")
+}],
+"loop": true,
+"name": &"left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_uvqda")
+}],
+"loop": true,
+"name": &"right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_ajmb7")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_74dtl"]
+size = Vector3(2.26506, 1, 2.24786)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ygdai"]
+radius = 13.0285
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_eu7ri"]
+
+[sub_resource type="Animation" id="Animation_f1e0n"]
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath("hitbox/CollisionShape3D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_k0oya"]
+resource_name = "attack1"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("hitbox/CollisionShape3D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_d7xge"]
+resource_name = "death"
+
+[sub_resource type="Animation" id="Animation_1ucgf"]
+resource_name = "phil_attack"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_es4ua"]
+_data = {
+"RESET": SubResource("Animation_f1e0n"),
+"attack1": SubResource("Animation_k0oya"),
+"death": SubResource("Animation_d7xge"),
+"phil_attack": SubResource("Animation_1ucgf")
+}
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ywo70"]
+
+[node name="grunt" type="CharacterBody3D"]
+script = ExtResource("1_ubtk6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_ef7uc")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+sprite_frames = SubResource("SpriteFrames_b3awq")
+animation = &"up"
+
+[node name="hitbox" parent="." instance=ExtResource("3_usay8")]
+collision_layer = 8
+collision_mask = 8
+script = ExtResource("9_qti7m")
+
+[node name="CollisionShape3D" parent="hitbox" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0404288, 0, -0.068634)
+shape = SubResource("BoxShape3D_74dtl")
+disabled = true
+
+[node name="detection_area" type="Area3D" parent="."]
+transform = Transform3D(0.972764, 0, 0, 0, 0.972764, 0, 0, 0, 0.972764, 0, 0, 0)
+collision_layer = 0
+monitorable = false
+priority = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="detection_area"]
+shape = SubResource("SphereShape3D_ygdai")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="enemy_attack_range" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="enemy_attack_range"]
+transform = Transform3D(5.13918, 0, 0, 0, 5.13918, 0, 0, 0, 5.13918, 0, 0, 0)
+shape = SubResource("SphereShape3D_eu7ri")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_es4ua")
+}
+
+[node name="take_damage_cooldown" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="attack_rotation" type="Node3D" parent="."]
+
+[node name="hurtbox" parent="attack_rotation" instance=ExtResource("2_yu3oy")]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" parent="attack_rotation/hurtbox" index="0"]
+shape = SubResource("CapsuleShape3D_ywo70")
+
+[node name="look_delay" type="Timer" parent="."]
+wait_time = 0.8
+autostart = true
+
+[connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="body_exited" from="hitbox" to="." method="_on_hitbox_body_exited"]
+[connection signal="body_entered" from="detection_area" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="detection_area" to="." method="_on_detection_area_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="enemy_attack_range" to="." method="_on_enemy_attack_range_body_entered"]
+[connection signal="body_exited" from="enemy_attack_range" to="." method="_on_enemy_atack_range_body_exited"]
+[connection signal="timeout" from="take_damage_cooldown" to="." method="_on_take_damage_cooldown_timeout"]
+[connection signal="area_entered" from="attack_rotation/hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="area_exited" from="attack_rotation/hurtbox" to="." method="_on_hurtbox_area_exited"]
+[connection signal="timeout" from="look_delay" to="." method="_on_look_delay_timeout"]
+
+[editable path="hitbox"]
+[editable path="attack_rotation/hurtbox"]
